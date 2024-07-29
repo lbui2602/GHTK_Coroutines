@@ -8,22 +8,35 @@ import com.example.ghtk_coroutines.models.Timer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.concurrent.timer
 
 class TimeViewModel : ViewModel() {
     private val _timers = MutableLiveData<MutableList<Timer>>(mutableListOf())
     val timers: LiveData<MutableList<Timer>> = _timers
 
-    suspend fun add() {
+    fun add() {
         val newTimer = Timer()
         _timers.value?.add(newTimer)
-        _timers.postValue(_timers.value)
+        _timers.value=_timers.value
         start(newTimer)
     }
     fun delete(timer: Timer){
         pause(timer)
         _timers.value?.remove(timer)
-        _timers.value = _timers.value
+        _timers.value=_timers.value
     }
+    fun reset() {
+        _timers.value?.forEach { timer ->
+            timer.giay = 0
+            timer.phut = 0
+            timer.gio = 0
+            timer.isRunning = false
+            timer.job?.cancel()
+            timer.job = null
+        }
+        _timers.postValue(_timers.value) // Sử dụng postValue để cập nhật LiveData từ luồng nền
+    }
+
 
     fun start(timer: Timer) {
         if(!timer.isRunning){
@@ -40,7 +53,7 @@ class TimeViewModel : ViewModel() {
                             timer.gio++
                         }
                     }
-                    _timers.value = _timers.value
+                    _timers.value=_timers.value
                 }
             }
         }

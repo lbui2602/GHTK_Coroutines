@@ -33,11 +33,10 @@ class MainActivity : AppCompatActivity() {
             Log.d("dfsd",timers.size.toString())
         })
         binding.btnAdd.setOnClickListener {
-            GlobalScope.launch {
-                timeViewModel.add()
-            }
-            Log.d("dfsd",timeViewModel.timers.value?.size.toString())
+            timeViewModel.add()
+        }
+        binding.btnReset.setOnClickListener {
+            timeViewModel.reset()
         }
     }
-
 }
