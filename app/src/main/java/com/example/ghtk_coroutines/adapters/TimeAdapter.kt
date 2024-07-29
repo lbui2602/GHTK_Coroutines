@@ -8,6 +8,8 @@ import com.example.ghtk_coroutines.databinding.ActivityMainBinding
 import com.example.ghtk_coroutines.databinding.TimeLayoutItemBinding
 import com.example.ghtk_coroutines.models.Timer
 import com.example.ghtk_coroutines.viewmodels.TimeViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class TimeAdapter(private val viewModel : TimeViewModel):
     RecyclerView.Adapter<TimeAdapter.TimeViewHolder>() {
@@ -74,7 +76,6 @@ class TimeAdapter(private val viewModel : TimeViewModel):
     override fun onBindViewHolder(holder: TimeViewHolder, position: Int) {
         val timer = timers?.get(position)
         timer?.let { holder.bind(it) }
-
     }
 
 }
