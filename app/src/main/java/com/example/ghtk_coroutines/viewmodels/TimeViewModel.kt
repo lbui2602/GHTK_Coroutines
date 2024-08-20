@@ -17,13 +17,13 @@ class TimeViewModel : ViewModel() {
     fun add() {
         val newTimer = Timer()
         _timers.value?.add(newTimer)
-        _timers.value=_timers.value
+        _timers.postValue(_timers.value)
         start(newTimer)
     }
     fun delete(timer: Timer){
         pause(timer)
         _timers.value?.remove(timer)
-        _timers.value=_timers.value
+        _timers.postValue(_timers.value)
     }
     fun reset() {
         _timers.value?.forEach { timer ->
@@ -34,14 +34,14 @@ class TimeViewModel : ViewModel() {
             timer.job?.cancel()
             timer.job = null
         }
-        _timers.postValue(_timers.value) // Sử dụng postValue để cập nhật LiveData từ luồng nền
+        _timers.postValue(_timers.value)
     }
 
 
     fun start(timer: Timer) {
         if(!timer.isRunning){
             timer.isRunning = true
-            timer.job = viewModelScope.launch(Dispatchers.Main) {
+            timer.job = viewModelScope.launch(Dispatchers.Default) {
                 while (timer.isRunning) {
                     delay(1000)
                     timer.giay++
@@ -53,7 +53,7 @@ class TimeViewModel : ViewModel() {
                             timer.gio++
                         }
                     }
-                    _timers.value=_timers.value
+                    _timers.postValue(_timers.value)
                 }
             }
         }
