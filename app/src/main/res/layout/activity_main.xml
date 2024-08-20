@@ -28,13 +28,31 @@
                 android:id="@+id/btnAdd"
                 android:text="add"
                 android:layout_width="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btnStart"
+                android:text="start"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btnPause"
+                android:text="pause"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btnContinue"
+                android:text="continue"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/btnReset"
                 android:text="reset"
                 android:layout_width="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>

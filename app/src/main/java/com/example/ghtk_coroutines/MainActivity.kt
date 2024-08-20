@@ -38,5 +38,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnReset.setOnClickListener {
             timeViewModel.reset()
         }
+        binding.btnStart.setOnClickListener {
+            timeViewModel.allStart()
+        }
+        binding.btnPause.setOnClickListener {
+            timeViewModel.allPause()
+        }
+        binding.btnContinue.setOnClickListener {
+            timeViewModel.allContinue()
+        }
     }
 }
