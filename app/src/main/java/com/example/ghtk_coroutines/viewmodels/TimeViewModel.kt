@@ -36,21 +36,6 @@ class TimeViewModel : ViewModel() {
         }
         _timers.postValue(_timers.value) // Sử dụng postValue để cập nhật LiveData từ luồng nền
     }
-    fun allStart() {
-        _timers.value?.forEach { timer ->
-            start(timer)
-        }
-    }
-    fun allPause() {
-        _timers.value?.forEach { timer ->
-            pause(timer)
-        }
-    }
-    fun allContinue() {
-        _timers.value?.forEach { timer ->
-            resume(timer)
-        }
-    }
 
 
     fun start(timer: Timer) {
